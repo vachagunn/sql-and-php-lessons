@@ -18,18 +18,15 @@
         $user = mysqli_fetch_assoc($result);
 
         if (!empty($user)) {
-            $salt = $user['salt'];
-            $hash_password = $user['password'];
+            $hash = $user['password'];
 
-            $password = md5($salt . $_POST['password']);
-
-            if ($password == $hash_password) {
+            // Проверяем соответствие пароля и хэша
+            if (password_verify($_POST['password'], $hash)) {
                 $_SESSION['auth'] = true;
                 echo "Пользователь прошел авторизацию";
             } else {
                 echo "Пара логин-пароль неверна";
             }
-            
         } else {
             echo "Пользователь неверно ввел логин или пароль";
         }

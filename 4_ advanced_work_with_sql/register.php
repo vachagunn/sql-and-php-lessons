@@ -7,17 +7,6 @@
 
     $link = new mysqli($host, $user, $password, $dnName);
     mysqli_query($link, "SET NAMES 'utf8'");
-    
-    function generateSalt() {
-        $salt = '';
-        $salt_length = 8;
-
-        for ($i = 0; $i < $salt_length; $i++) {
-            $salt .= chr(mt_rand(33, 126)); // любой символ из ASCII
-        }
-
-        return $salt;
-    }
 
     function validate($login, $password, $email, $birthday) {
         $errors = array();
@@ -63,8 +52,7 @@
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        $salt = generateSalt();
-        $hash_password = md5($salt . $password);
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         
         $confirm_password = $_POST['confirm_password'];
         $email = $_POST['email'];
@@ -84,7 +72,7 @@
             if (empty($user) || count($user) != 0) {
                 // Проверка совпадения пароля
                 if ($password == $confirm_password) {
-                    $query = "INSERT INTO $table SET login= '$login', password='$hash_password', salt='$salt', email='$email', birthday='$birthday', registration_date='$date'";
+                    $query = "INSERT INTO $table SET login= '$login', password='$hash', salt='$salt', email='$email', birthday='$birthday', registration_date='$date'";
                     mysqli_query($link, $query);
                     
                     // Пишем в сессию пометку об авторизации
