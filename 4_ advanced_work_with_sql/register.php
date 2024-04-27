@@ -52,7 +52,7 @@
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $hash = password_hash($password, PASSWORD_BCRYPT);
         
         $confirm_password = $_POST['confirm_password'];
         $email = $_POST['email'];
