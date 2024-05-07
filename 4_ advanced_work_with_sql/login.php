@@ -8,11 +8,11 @@
     $link = new mysqli($host, $user, $password, $dnName);
     mysqli_query($link, "SET NAMES 'utf8'");
 
-    session_start();
-    if(isset($_SESSION['user_id'])) {
-        header("Location: profile.php");
-        exit();
-    }
+    // session_start();
+    // if(isset($_SESSION['user_id'])) {
+    //     header("Location: profile.php");
+    //     exit();
+    // }
 
     // Если форма авторизации отправлена...
     if (!empty($_POST['login'] && !empty($_POST['password']))) {
@@ -47,5 +47,4 @@
     <input name="password" type="password">
     <input type="submit" value="Отправить">
 </form>
-<a href="1.php">Страница 1</a>
 <a href="register.php">Регистрация</a>

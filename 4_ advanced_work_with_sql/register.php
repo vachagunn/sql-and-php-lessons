@@ -56,6 +56,9 @@
         
         $confirm_password = $_POST['confirm_password'];
         $email = $_POST['email'];
+        $name = $_POST['name'];
+        $second_name = $_POST['second_name'];
+        $surname = $_POST['surname'];
         $birthday = $_POST['birthday'];
         $date = date('Y-m-d'); // Получаем текущую дату
 
@@ -73,11 +76,17 @@
                 // Проверка совпадения пароля
                 if ($password == $confirm_password) {
                     echo "ID пользователя: ". $user['id'] . " ";
-                    $query = "INSERT INTO $table SET login= '$login', password='$hash', email='$email', birthday='$birthday', registration_date='$date'";
+                    $query = "INSERT INTO $table SET 
+                        login= '$login', 
+                        password='$hash', 
+                        name='$name',
+                        second_name='$second_name',
+                        surname='$surname',
+                        email='$email',
+                        birthday='$birthday', 
+                        registration_date='$date'
+                    ";
                     mysqli_query($link, $query);
-                    
-                    // Пишем в сессию пометку об авторизации
-                    $_SESSION['auth'] = true;
                     header("Location: login.php");
                     exit();
                 } else {
@@ -100,6 +109,11 @@
         <input name="login" placeholder="Логин" required>
         <input name="password" type="password" placeholder="Пароль" required>
         <input name="confirm_password" type="password" placeholder="Повторите пароль" required>
+    </div>
+    <div style="margin-bottom: 5px;">
+        <input name="name" type="text" placeholder="Имя">
+        <input name="second_name" type="text" placeholder="Фамилия">
+        <input name="surname" type="text" placeholder="Отчество">
     </div>
     <div style="margin-bottom: 5px;">
         <input name="email" type="email" placeholder="Почта">

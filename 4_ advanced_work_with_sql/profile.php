@@ -19,6 +19,11 @@
     $query = "SELECT * FROM users WHERE id='$user_id'";
     $result = mysqli_query($link, $query);
     $user = $result->fetch_assoc();
+
+    // Получение возраста пользователя
+    $today = date('Y-m-d');
+    $diff = date_diff(date_create($user['birthday']), date_create($today));
+    $age = $diff->y;
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +33,11 @@
     </head>
     <body>
         <h1>Профиль</h1>
-        <h3>Пользователь: <?php echo $user['login']; ?></h3>
+        <p>Пользователь: <?php echo $user['login']; ?></p>
+        <p>Имя: <?php echo $user['name']; ?></p>
+        <p>Фамилия: <?php echo $user['second_name']; ?></p>
+        <p>Отчество: <?php echo $user['surname']; ?></p>
+        <p>Дата рождения: <?php echo $age; ?></p>
         <a href="logout.php">Выйти</a>
     </body>
 </html>
