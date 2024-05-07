@@ -8,6 +8,12 @@
     $link = new mysqli($host, $user, $password, $dnName);
     mysqli_query($link, "SET NAMES 'utf8'");
 
+    session_start();
+    if(isset($_SESSION['user_id'])) {
+        header("Location: profile.php");
+        exit();
+    }
+
     // Если форма авторизации отправлена...
     if (!empty($_POST['login'] && !empty($_POST['password']))) {
         $login = $_POST['login'];
@@ -23,7 +29,9 @@
             // Проверяем соответствие пароля и хэша
             if (password_verify($_POST['password'], $hash)) {
                 $_SESSION['auth'] = true;
-                echo "Пользователь прошел авторизацию";
+                $_SESSION['user_id'] = $user['id'];
+                header("Location: profile.php");
+                exit();
             } else {
                 echo "Пара логин-пароль неверна";
             }
@@ -41,4 +49,3 @@
 </form>
 <a href="1.php">Страница 1</a>
 <a href="register.php">Регистрация</a>
-<a href="logout.php">Выйти</a>

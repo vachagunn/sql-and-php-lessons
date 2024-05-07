@@ -72,12 +72,14 @@
             if (empty($user) || count($user) != 0) {
                 // Проверка совпадения пароля
                 if ($password == $confirm_password) {
-                    $query = "INSERT INTO $table SET login= '$login', password='$hash', salt='$salt', email='$email', birthday='$birthday', registration_date='$date'";
+                    echo "ID пользователя: ". $user['id'] . " ";
+                    $query = "INSERT INTO $table SET login= '$login', password='$hash', email='$email', birthday='$birthday', registration_date='$date'";
                     mysqli_query($link, $query);
                     
                     // Пишем в сессию пометку об авторизации
-                    $_SESSION['auth'] = true;   
-                    // $_SESSION['id'] = $id;
+                    $_SESSION['auth'] = true;
+                    header("Location: login.php");
+                    exit();
                 } else {
                     echo 'Пароли не совпадают. ';
                 }
