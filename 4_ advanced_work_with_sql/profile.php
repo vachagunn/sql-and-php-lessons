@@ -43,6 +43,7 @@
         <div style="display: flex; gap: 30px;">
             <a href="personalArea.php">Редактировать</a>
             <a href="changePassword.php">Сменить пароль</a>
+            <a href="deleteAccount.php">Удалить аккаунт</a>
             <a href="logout.php">Выйти</a>
         </div>
     </body>
