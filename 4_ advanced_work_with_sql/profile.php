@@ -16,7 +16,7 @@
     
     // Получаем данные авторизованного пользователя
     $user_id = $_SESSION['user_id'];
-    $query = "SELECT * FROM users WHERE id='$user_id'";
+    $query = "SELECT * FROM $table WHERE id='$user_id'";
     $result = mysqli_query($link, $query);
     $user = $result->fetch_assoc();
 
@@ -33,11 +33,16 @@
     </head>
     <body>
         <h1>Профиль</h1>
-        <p>Пользователь: <?php echo $user['login']; ?></p>
-        <p>Имя: <?php echo $user['name']; ?></p>
-        <p>Фамилия: <?php echo $user['second_name']; ?></p>
-        <p>Отчество: <?php echo $user['surname']; ?></p>
-        <p>Дата рождения: <?php echo $age; ?></p>
-        <a href="logout.php">Выйти</a>
+        <div>
+            <p>Пользователь: <?php echo $user['login']; ?></p>
+            <p>Имя: <?php echo $user['name']; ?></p>
+            <p>Фамилия: <?php echo $user['second_name']; ?></p>
+            <p>Отчество: <?php echo $user['surname']; ?></p>
+            <p>Дата рождения: <?php echo $age; ?></p>
+        </div>
+        <div style="display: flex; gap: 30px;">
+            <a href="personalArea.php">Редактировать</a>
+            <a href="logout.php">Выйти</a>
+        </div>
     </body>
 </html>
