@@ -38,10 +38,11 @@
             <p>Имя: <?php echo $user['name']; ?></p>
             <p>Фамилия: <?php echo $user['second_name']; ?></p>
             <p>Отчество: <?php echo $user['surname']; ?></p>
-            <p>Дата рождения: <?php echo $age; ?></p>
+            <p>Возраст: <?php echo $age; ?></p>
         </div>
         <div style="display: flex; gap: 30px;">
             <a href="personalArea.php">Редактировать</a>
+            <a href="changePassword.php">Сменить пароль</a>
             <a href="logout.php">Выйти</a>
         </div>
     </body>
