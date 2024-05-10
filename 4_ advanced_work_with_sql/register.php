@@ -78,7 +78,8 @@
                     echo "ID пользователя: ". $user['id'] . " ";
                     $query = "INSERT INTO $table SET 
                         login= '$login', 
-                        password='$hash', 
+                        password='$hash',
+                        status='user',
                         name='$name',
                         second_name='$second_name',
                         surname='$surname',
