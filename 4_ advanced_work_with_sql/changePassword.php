@@ -46,6 +46,8 @@
             <input type="password" name="new_password" placeholder="Новый пароль">
             <input type="submit" value="Поменять">
         </form>
-        <a href="profile.php">Профиль</a>
+        <div style="margin-top: 15px;">
+            <a href="profile.php">Профиль</a>
+        </div>
     </body>
 </html>

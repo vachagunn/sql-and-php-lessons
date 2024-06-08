@@ -31,8 +31,13 @@
                 $_SESSION['auth'] = true;
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['status'] = $user['status'];
-                header("Location: profile.php");
-                exit();
+
+                if ($_SESSION['status'] == 'admin') {
+                    header("Location: admin.php");
+                } else {
+                    header("Location: profile.php");
+                    exit();
+                }
             } else {
                 echo "Пара логин-пароль неверна";
             }
